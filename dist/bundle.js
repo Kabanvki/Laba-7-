@@ -1,0 +1,32 @@
+/*
+ * ATTENTION: The "eval" devtool has been used (maybe by default in mode: "development").
+ * This devtool is neither made for production nor for readable output files.
+ * It uses "eval()" calls to create a separate source file in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with "devtool: false".
+ * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+ */
+/******/ (() => { // webpackBootstrap
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./index.js":
+/*!******************!*\
+  !*** ./index.js ***!
+  \******************/
+/***/ (() => {
+
+eval("class Task {\r\n    constructor(text, completed = false) {\r\n        this.text = text;\r\n        this.completed = completed;\r\n    }\r\n\r\n    createTaskElement() {\r\n        const newTask = document.createElement('div');\r\n        newTask.classList.add('tasks2');\r\n\r\n        const label = document.createElement('label');\r\n        label.classList.add('label1');\r\n        if (this.completed) {\r\n            label.classList.add('completed');\r\n        }\r\n\r\n        const checkbox = document.createElement('input');\r\n        checkbox.setAttribute('type', 'checkbox');\r\n        checkbox.checked = this.completed;\r\n        checkbox.addEventListener('change', () => {\r\n            label.classList.toggle('completed', checkbox.checked);\r\n            this.completed = checkbox.checked;\r\n            updateCounters();\r\n        });\r\n\r\n        const labelText = document.createTextNode(this.text);\r\n\r\n        const closeButton = document.createElement('button');\r\n        closeButton.classList.add('buttontasks');\r\n        closeButton.innerHTML = '&times;';\r\n        closeButton.addEventListener('click', () => {\r\n            newTask.remove();\r\n            updateCounters();\r\n        });\r\n\r\n        label.appendChild(checkbox);\r\n        label.appendChild(labelText);\r\n        newTask.appendChild(label);\r\n        newTask.appendChild(closeButton);\r\n\r\n        return newTask;\r\n    }\r\n}\r\n\r\ndocument.addEventListener(\"DOMContentLoaded\", function () {\r\n    var form = document.querySelector('.forma');\r\n    var input = document.querySelector('.inputtext');\r\n    var tasksContainer = document.querySelector('.tasks');\r\n    var doneLink = document.querySelector('.done-link');\r\n    var notDoneLink = document.querySelector('.not-done-link');\r\n    var allLink = document.querySelector('.all-link');\r\n    var doneCountSpan = document.querySelector('.done-count');\r\n    var notDoneCountSpan = document.querySelector('.not-done-count');\r\n    var allCountSpan = document.querySelector('.all-count');\r\n    var clearAllButton = document.querySelector('.buttonsdel');\r\n    var filterButton = document.querySelector('.filter-button');\r\n\r\n    var tasks = [];\r\n    var isFiltered = false;\r\n\r\n    form.addEventListener('submit', function (event) {\r\n        event.preventDefault();\r\n\r\n        var taskText = input.value;\r\n\r\n        if (taskText.trim() !== '') {\r\n            var newTask = new Task(taskText);\r\n            tasks.push(newTask);\r\n            var taskElement = newTask.createTaskElement();\r\n\r\n            tasksContainer.appendChild(taskElement);\r\n            input.value = '';\r\n            updateCounters();\r\n        }\r\n    });\r\n\r\n    tasksContainer.addEventListener('click', function (event) {\r\n        if (event.target.classList.contains('buttontasks')) {\r\n            var taskToRemove = event.target.closest('.tasks2');\r\n            var index = Array.from(tasksContainer.children).indexOf(taskToRemove);\r\n            tasks.splice(index, 1);\r\n            tasksContainer.removeChild(taskToRemove);\r\n            updateCounters();\r\n        }\r\n    });\r\n\r\n    doneLink.addEventListener('click', function () {\r\n        displayTasks(true);\r\n    });\r\n\r\n    notDoneLink.addEventListener('click', function () {\r\n        displayTasks(false);\r\n    });\r\n\r\n    allLink.addEventListener('click', function () {\r\n        displayTasks();\r\n    });\r\n\r\n    clearAllButton.addEventListener('click', function () {\r\n        tasksContainer.innerHTML = '';\r\n        tasks = [];\r\n        updateCounters();\r\n    });\r\n\r\n    filterButton.addEventListener('click', function () {\r\n        toggleFilter();\r\n    });\r\n\r\n    function toggleFilter() {\r\n        isFiltered = !isFiltered;\r\n\r\n        tasksContainer.innerHTML = '';\r\n\r\n        if (isFiltered) {\r\n            tasks.sort((a, b) => b.text.localeCompare(a.text));\r\n        } else {\r\n            tasks.sort((a, b) => a.text.localeCompare(b.text));\r\n        }\r\n\r\n        tasks.forEach(function (task) {\r\n            var taskElement = task.createTaskElement();\r\n            tasksContainer.appendChild(taskElement);\r\n        });\r\n\r\n        updateCounters();\r\n    }\r\n\r\n    function displayTasks(showCompleted) {\r\n        tasksContainer.innerHTML = '';\r\n\r\n        tasks.forEach(function (task) {\r\n            if (showCompleted === undefined || task.completed === showCompleted) {\r\n                var taskElement = task.createTaskElement();\r\n                tasksContainer.appendChild(taskElement);\r\n            }\r\n        });\r\n\r\n        updateCounters();\r\n    }\r\n\r\n    function updateCounters() {\r\n        var doneCount = tasks.filter(task => task.completed).length;\r\n        var notDoneCount = tasks.filter(task => !task.completed).length;\r\n        var allCount = tasks.length;\r\n\r\n        doneCountSpan.textContent = doneCount;\r\n        notDoneCountSpan.textContent = notDoneCount;\r\n        allCountSpan.textContent = allCount;\r\n    }\r\n});\n\n//# sourceURL=webpack://laba6/./index.js?");
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module can't be inlined because the eval devtool is used.
+/******/ 	var __webpack_exports__ = {};
+/******/ 	__webpack_modules__["./index.js"]();
+/******/ 	
+/******/ })()
+;
